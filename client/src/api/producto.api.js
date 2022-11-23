@@ -1,6 +1,6 @@
 import axios from 'axios';
 export const getProductosRequest= async () =>
-  await axios.get('https://sistema-de-inventario-production.up.railway.app/producto');
+  await axios.get('http://localhost:5000/producto');
 export const createProductoRequest = async (producto) =>
   await axios.post('http://localhost:5000/producto', producto);
 export const deleteProductoRequest = async (id) =>
