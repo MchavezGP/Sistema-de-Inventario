@@ -20,7 +20,7 @@ export const createMarca = async (req, res) => {
 };
 
 //Obtiene todas las Marcas
-export const getarcas = async (req, res) => {
+export const getMarcas = async (req, res) => {
   try {
     const [result] = await pool.query('SELECT * FROM marca');
     res.json(result);
