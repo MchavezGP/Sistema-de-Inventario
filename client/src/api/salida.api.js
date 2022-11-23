@@ -1,7 +1,7 @@
 import axios from 'axios';
 export const getSalidasRequest= async () =>
-  await axios.get('http://localhost:5000/salida');
+  await axios.get('https://sistema-de-inventario-production.up.railway.app/salida');
 export const createSalidaRequest= async (salida) =>
-  await axios.post('http://localhost:5000/salida', salida);
+  await axios.post('https://sistema-de-inventario-production.up.railway.app/salida', salida);
 export const deleteSalidaRequest= async (id) =>
-  await axios.delete(`http://localhost:5000/salida/${id}`);
+  await axios.delete(`https://sistema-de-inventario-production.up.railway.app/salida/${id}`);
