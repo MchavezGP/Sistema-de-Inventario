@@ -1,8 +1,8 @@
 import axios from 'axios';
 export const getAreasRequest = async () =>
-  await axios.get('http://localhost:5000/area');
+  await axios.get('https://sistema-de-inventario-production.up.railway.app/area');
 export const createAreaRequest= async (area) =>
-  await axios.post('http://localhost:5000/area', area);
+  await axios.post('https://sistema-de-inventario-production.up.railway.app/area', area);
 export const deleteAreaRequest = async (id) =>
-  await axios.delete(`http://localhost:5000/area/${id}`);
+  await axios.delete(`https://sistema-de-inventario-production.up.railway.app/area/${id}`);
 

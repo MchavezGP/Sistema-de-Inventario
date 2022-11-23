@@ -9,7 +9,7 @@ export const createUser = async (req, res) => {
     const encryptedPassword = await bcrypt.hash(contrasena, 10);
     // console.log(encryptedPassword)
     const [result] = await pool.query(
-      'INSERT INTO USUARIO(nombre, apellidoPaterno, apellidoMaterno, correo, contrasena) VALUES (?,?,?,?,?)',
+      'INSERT INTO usuario (nombre, apellidoPaterno, apellidoMaterno, correo, contrasena) VALUES (?,?,?,?,?)',
       [nombre, apellidoPaterno, apellidoMaterno, correo, encryptedPassword]
     );
 
@@ -29,7 +29,7 @@ export const login = async (req, res) => {
   try {
     const { correo, contrasena } = req.body;
     const [result] = await pool.query(
-      'SELECT * FROM USUARIO WHERE CORREO = ?',
+      'SELECT * FROM usuario WHERE CORREO = ?',
       [correo]
     );
     if (result.length == 0) {
