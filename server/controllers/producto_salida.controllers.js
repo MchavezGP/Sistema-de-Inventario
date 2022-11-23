@@ -7,7 +7,7 @@ export const createProductoSalida = async (req, res) => {
   try {
     const { producto, salida, cantidad  } = req.body;
     const [result] = await pool.query(
-      'INSERT INTO PRODUCTO_SALIDA (producto, salida, cantidad) VALUES (?,?,?)',
+      'INSERT INTO producto_salida (producto, salida, cantidad) VALUES (?,?,?)',
       [producto, salida, cantidad]
 
     );
@@ -34,7 +34,7 @@ export const getProductosSalidas = async (req, res) => {
 //Elimina un ProductoSalida por id
 export const deleteProductoSalida= async (req, res) => {
   try {
-    const [result] = await pool.query('DELETE FROM PRODUCTO_SALIDA WHERE idProductoSalida = ?', [
+    const [result] = await pool.query('DELETE FROM producto_salida WHERE idProductoSalida = ?', [
       req.params.id,
     ]);
     if (result.affectedRows === 0)

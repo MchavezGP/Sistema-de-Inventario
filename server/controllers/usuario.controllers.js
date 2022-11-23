@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { pool } from '../db.js';
 export const getUsuarios = async (req, res) => {
   try {
-    const [result] = await pool.query('SELECT * FROM USUARIO');
+    const [result] = await pool.query('SELECT * FROM usuario');
     res.json(result);
   } catch (error) {
     return res.status(500).json({ message: error.message });
@@ -12,7 +12,7 @@ export const getUsuarios = async (req, res) => {
 export const getUsuario = async (req, res) => {
   try {
     const [result] = await pool.query(
-      'SELECT * FROM USUARIO WHERE idUsuario = ?',
+      'SELECT * FROM usuario WHERE idUsuario = ?',
       [req.params.id]
     );
     if (result.length == 0)
@@ -31,7 +31,7 @@ export const createUsuario = async (req, res) => {
       req.body;
     // const passwordHash = await encrypt(contrasena);
     const [result] = await pool.query(
-      'INSERT INTO USUARIO(nombre, apellidoPaterno, apellidoMaterno, correo, contrasena) VALUES (?,?,?,?,?)',
+      'INSERT INTO usuario(nombre, apellidoPaterno, apellidoMaterno, correo, contrasena) VALUES (?,?,?,?,?)',
       [nombre, apellidoPaterno, apellidoMaterno, correo, contrasena]
     );
 
@@ -51,7 +51,7 @@ export const createUsuario = async (req, res) => {
 export const updateUsuario = async (req, res) => {
   try {
     const result = await pool.query(
-      'UPDATE USUARIO SET ? WHERE idUsuario = ?',
+      'UPDATE usuario SET ? WHERE idUsuario = ?',
       [req.body, req.params.id]
     );
     res.json(result);
@@ -63,7 +63,7 @@ export const updateUsuario = async (req, res) => {
 export const deleteUsuario = async (req, res) => {
   try {
     const [result] = await pool.query(
-      'DELETE FROM USUARIO WHERE idUsuario = ?',
+      'DELETE FROM usuario WHERE idUsuario = ?',
       [req.params.id]
     );
     if (result.affectedRows === 0)

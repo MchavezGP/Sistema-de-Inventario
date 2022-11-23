@@ -6,7 +6,7 @@ export const createArea = async (req, res) => {
   try {
     const { nombreArea } = req.body;
     const [result] = await pool.query(
-      'INSERT INTO AREA (nombreArea) VALUES (?)',
+      'INSERT INTO area (nombreArea) VALUES (?)',
       [nombreArea]
     );
 
@@ -22,7 +22,7 @@ export const createArea = async (req, res) => {
 //Obtiene todas las Areas
 export const getAreas = async (req, res) => {
   try {
-    const [result] = await pool.query('SELECT * FROM AREA');
+    const [result] = await pool.query('SELECT * FROM area');
     res.json(result);
   } catch (error) {
     return res.status(500).json({ message: error.message });
@@ -32,7 +32,7 @@ export const getAreas = async (req, res) => {
 //Borra un Area por id
 export const deleteArea = async (req, res) => {
   try {
-    const [result] = await pool.query('DELETE FROM AREA WHERE idArea = ?', [
+    const [result] = await pool.query('DELETE FROM area WHERE idArea = ?', [
       req.params.id,
     ]);
     if (result.affectedRows === 0)

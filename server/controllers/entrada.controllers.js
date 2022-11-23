@@ -15,7 +15,7 @@ export const getEntradas = async (req, res) => {
 export const getEntrada = async (req, res) => {
   try {
     const [result] = await pool.query(
-      'SELECT * FROM ENTRADA WHERE idEntrada = ?',
+      'SELECT * FROM entrada WHERE idEntrada = ?',
       [req.params.id]
     );
     if (result.length == 0)
@@ -32,7 +32,7 @@ export const createEntrada = async (req, res) => {
   try {
     const { fecha,  usuarioEntrada } = req.body;
     const [result] = await pool.query(
-      'INSERT INTO ENTRADA (fecha , usuarioEntrada ) VALUES (?,?)',
+      'INSERT INTO entrada (fecha , usuarioEntrada ) VALUES (?,?)',
       [fecha,  usuarioEntrada ]
     );
 
@@ -50,7 +50,7 @@ export const createEntrada = async (req, res) => {
 export const updateEntrada = async (req, res) => {
   try {
     const result = await pool.query(
-      'UPDATE ENTRADA SET ? WHERE idEntrada = ?',
+      'UPDATE entrada SET ? WHERE idEntrada = ?',
       [req.body, req.params.id]
     );
     res.json(result);
@@ -63,7 +63,7 @@ export const updateEntrada = async (req, res) => {
 export const deleteEntrada = async (req, res) => {
   try {
     const [result] = await pool.query(
-      'DELETE FROM ENTRADA WHERE idEntrada = ?',
+      'DELETE FROM entrada WHERE idEntrada = ?',
       [req.params.id]
     );
     if (result.affectedRows === 0)

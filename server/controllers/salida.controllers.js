@@ -17,7 +17,7 @@ export const getSalidas = async (req, res) => {
 export const getSalida = async (req, res) => {
   try {
     const [result] = await pool.query(
-      'SELECT * FROM SALIDA WHERE idSalida = ?',
+      'SELECT * FROM salida WHERE idSalida = ?',
       [req.params.id]
     );
     if (result.length == 0)
@@ -34,7 +34,7 @@ export const createSalida = async (req, res) => {
   try {
     const { fecha , usuarioSalida,  area } = req.body;
     const [result] = await pool.query(
-      'INSERT INTO SALIDA (fecha,  usuarioSalida,  area  ) VALUES (?,?,?)',
+      'INSERT INTO salida (fecha,  usuarioSalida,  area  ) VALUES (?,?,?)',
       [fecha, usuarioSalida, area]
     );
 
@@ -52,7 +52,7 @@ export const createSalida = async (req, res) => {
 //Actualiza un atributo de una Salida
 export const updateSalida = async (req, res) => {
   try {
-    const result = await pool.query('UPDATE SALIDA SET ? WHERE idSalida = ?', [
+    const result = await pool.query('UPDATE salida SET ? WHERE idSalida = ?', [
       req.body,
       req.params.id,
     ]);
@@ -65,7 +65,7 @@ export const updateSalida = async (req, res) => {
 //Elimina una Salida por id
 export const deleteSalida = async (req, res) => {
   try {
-    const [result] = await pool.query('DELETE FROM SALIDA WHERE idSalida = ?', [
+    const [result] = await pool.query('DELETE FROM salida WHERE idSalida = ?', [
       req.params.id,
     ]);
     if (result.affectedRows === 0)

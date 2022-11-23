@@ -6,7 +6,7 @@ export const createMarca = async (req, res) => {
   try {
     const { nombreMarca } = req.body;
     const [result] = await pool.query(
-      'INSERT INTO MARCA(nombreMarca) VALUES (?)',
+      'INSERT INTO marca(nombreMarca) VALUES (?)',
       [nombreMarca]
     );
 
@@ -31,7 +31,7 @@ export const getarcas = async (req, res) => {
 export const getMarca = async (req, res) => {
   try {
     const [result] = await pool.query(
-      'SELECT * FROM MARCA  WHERE idMarca = ? ',
+      'SELECT * FROM marca  WHERE idMarca = ? ',
       [req.params.id]
     );
     if (result.length == 0)
@@ -48,7 +48,7 @@ export const getMarca = async (req, res) => {
 export const deleteMarca = async (req, res) => {
   try {
     const [result] = await pool.query(
-      'DELETE FROM MARCA WHERE idMarca = ?',
+      'DELETE FROM marca WHERE idMarca = ?',
       [req.params.id]
     );
     if (result.affectedRows === 0)
@@ -63,7 +63,7 @@ export const deleteMarca = async (req, res) => {
 export const updateMarca = async (req, res) => {
   try {
     const result = await pool.query(
-      'UPDATE MARCA SET ? WHERE idMarca = ?',
+      'UPDATE marca SET ? WHERE idMarca = ?',
       [req.body, req.params.id]
     );
     res.json(result);

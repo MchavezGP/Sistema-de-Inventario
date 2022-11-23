@@ -8,7 +8,7 @@ export const createCategoria= async (req, res) => {
   try {
     const { nombreCategoria  } = req.body;
     const [result] = await pool.query(
-      'INSERT INTO CATEGORIA(nombreCategoria) VALUES (?)',
+      'INSERT INTO categoria(nombreCategoria) VALUES (?)',
       [nombreCategoria]
     );
 
@@ -25,7 +25,7 @@ export const createCategoria= async (req, res) => {
 
 export const getCategorias= async (req, res) => {
   try {
-    const [result] = await pool.query('SELECT * FROM CATEGORIA');
+    const [result] = await pool.query('SELECT * FROM categoria');
     res.json(result);
   } catch (error) {
     return res.status(500).json({ message: error.message });
@@ -36,7 +36,7 @@ export const getCategorias= async (req, res) => {
 export const getCategoria = async (req, res) => {
   try {
     const [result] = await pool.query(
-      'SELECT * FROM CATEGORIA WHERE idCategoria = ? ',
+      'SELECT * FROM categoria WHERE idCategoria = ? ',
       [req.params.id]
     );
     if (result.length == 0)
@@ -50,7 +50,7 @@ export const getCategoria = async (req, res) => {
 //Elimina una categoria  por id
 export const deleteCategoria = async (req, res) => {
   try {
-    const [result] = await pool.query('DELETE FROM CATEGORIA WHERE idCategoria = ?', [
+    const [result] = await pool.query('DELETE FROM categoria WHERE idCategoria = ?', [
       req.params.id,
     ]);
     if (result.affectedRows === 0)
@@ -64,7 +64,7 @@ export const deleteCategoria = async (req, res) => {
 export const updateCategoria = async (req, res) => {
   try {
     const result = await pool.query(
-      'UPDATE CATEGORIA SET ? WHERE idCategoria = ?',
+      'UPDATE categoria SET ? WHERE idCategoria = ?',
       [req.body, req.params.id]
     );
     res.json(result);

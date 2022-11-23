@@ -34,7 +34,7 @@ export const createProducto = async (req, res) => {
   try {
     const { nombreProducto, stock, fecha, marca, categoria } = req.body;
     const [result] = await pool.query(
-      'INSERT INTO PRODUCTO (nombreProducto , stock ,fecha, marca,  categoria ) VALUES (?,?,?,?,?)',
+      'INSERT INTO producto (nombreProducto , stock ,fecha, marca,  categoria ) VALUES (?,?,?,?,?)',
       [nombreProducto, stock, fecha, marca, categoria]
     );
 
@@ -55,7 +55,7 @@ export const createProducto = async (req, res) => {
 export const updateProducto = async (req, res) => {
   try {
     const result = await pool.query(
-      'UPDATE PRODUCTO SET ? WHERE idProducto = ?',
+      'UPDATE producto SET ? WHERE idProducto = ?',
       [req.body, req.params.id]
     );
     res.json(result);
@@ -68,7 +68,7 @@ export const updateStock = async (req, res) => {
   try {
     const { idProducto , cantidad} = req.body;
     const [result] = await pool.query(
-      'UPDATE PRODUCTO SET STOCK = STOCK + CANTIDAD  WHERE idProducto = ?;',
+      'UPDATE producto SET STOCK = STOCK + CANTIDAD  WHERE idProducto = ?;',
       [idProducto, cantidad]
     );
 
@@ -84,7 +84,7 @@ export const updateStock = async (req, res) => {
 export const deleteProducto = async (req, res) => {
   try {
     const [result] = await pool.query(
-      'DELETE FROM PRODUCTO WHERE idProducto = ?',
+      'DELETE FROM producto WHERE idProducto = ?',
       [req.params.id]
     );
     if (result.affectedRows === 0)
