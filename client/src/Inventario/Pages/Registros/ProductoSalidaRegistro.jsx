@@ -122,7 +122,7 @@ export const ProductoSalidaRegistro = () => {
     },
   });
   return (
-    <FormLayout titulo='Agregar Producto a Entrada'>
+    <FormLayout titulo='Agregar Producto a Salida'>
       <form onSubmit={formik.handleSubmit}>
         <h3>Ultima Salida:</h3>
         <h4>{idSalida}</h4>
