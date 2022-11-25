@@ -22,7 +22,7 @@ export const createEntradaProducto = async (req, res) => {
 //Obtiene EntradasProductos
 export const getEntradasProductos= async (req, res) => {
   try {
-    const [result] = await pool.query(' select  ep.idEntradaProducto,ep.producto,  ep.entrada, p.nombreProducto, ep.cantidad,  date_format(e.fecha , "%d-%m-%Y") AS fecha, c.nombreCategoria, m.nombreMarca, u.nombre from entrada_producto ep INNER JOIN Producto p ON ep.producto = p.idProducto INNER JOIN Marca m ON p.marca = m.idMarca INNER JOIN Categoria c ON p.categoria = c.idCategoria INNER JOIN Entrada e ON ep.entrada = e.idEntrada INNER JOIN Usuario u ON e.usuarioEntrada = u.idUsuario order by idEntradaProducto; ');
+    const [result] = await pool.query(' select  ep.idEntradaProducto,ep.producto,  ep.entrada, p.nombreProducto, ep.cantidad,  date_format(e.fecha , "%d-%m-%Y") AS fecha, c.nombreCategoria, m.nombreMarca, u.nombre from entrada_producto ep INNER JOIN producto p ON ep.producto = p.idProducto INNER JOIN marca m ON p.marca = m.idMarca INNER JOIN categoria c ON p.categoria = c.idCategoria INNER JOIN entrada e ON ep.entrada = e.idEntrada INNER JOIN usuario u ON e.usuarioEntrada = u.idUsuario order by idEntradaProducto; ');
     res.json(result);
   } catch (error) {
     return res.status(500).json({ message: error.message });

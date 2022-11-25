@@ -24,7 +24,7 @@ export const createProductoSalida = async (req, res) => {
 //Obtiene  ProductosSalidas
 export const getProductosSalidas = async (req, res) => {
   try {
-    const [result] = await pool.query(' select  ps.idProductoSalida, ps.producto,  ps.salida, p.nombreProducto, ps.cantidad, a.nombreArea,  date_format(s.fecha , "%d-%m-%Y") AS fecha, c.nombreCategoria, m.nombreMarca, u.nombre from producto_salida ps INNER JOIN Producto p ON ps.producto = p.idProducto INNER JOIN Marca m ON p.marca = m.idMarca INNER JOIN Categoria c ON p.categoria = c.idCategoria INNER JOIN Salida s ON ps.salida = s.idSalida INNER JOIN Usuario u ON s.usuarioSalida = u.idUsuario INNER JOIN Area a ON s.area = a.idArea order by idProductoSalida');
+    const [result] = await pool.query(' select  ps.idProductoSalida, ps.producto,  ps.salida, p.nombreProducto, ps.cantidad, a.nombreArea,  date_format(s.fecha , "%d-%m-%Y") AS fecha, c.nombreCategoria, m.nombreMarca, u.nombre from producto_salida ps INNER JOIN Producto p ON ps.producto = p.idProducto INNER JOIN marca m ON p.marca = m.idMarca INNER JOIN categoria c ON p.categoria = c.idCategoria INNER JOIN salida s ON ps.salida = s.idSalida INNER JOIN usuario u ON s.usuarioSalida = u.idUsuario INNER JOIN area a ON s.area = a.idArea order by idProductoSalida');
     res.json(result);
   } catch (error) {
     return res.status(500).json({ message: error.message });
