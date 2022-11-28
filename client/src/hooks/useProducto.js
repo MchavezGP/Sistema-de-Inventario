@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getProductosRequest, deleteProductoRequest, updateProductoRequest, getProductoRequest} from '../api/producto.api';
+import { getProductosRequest, getKardexRequest, deleteProductoRequest, updateProductoRequest, getProductoRequest} from '../api/producto.api';
 
 export const useProductos = () => {
   const [productos , setProductos] = useState([]);
@@ -23,6 +23,15 @@ export const useProductos = () => {
   const getProducto = async (id) => {
     try {
       const response = await getProductoRequest(id);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const getKardex = async (id) => {
+    try {
+      const response = await getKardexRequest();
       return response.data;
     } catch (error) {
       console.error(error);

@@ -1,10 +1,10 @@
 import { useProductos } from '../../../hooks';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import ProductoPDF from '../PDF/Producto.jsx';
 import { PDFDownloadLink } from '@react-pdf/renderer';
-import { useRef } from 'react';
+
 export const ListProductos = () => {
   const { productos, deleteProducto } = useProductos();
   const [currentPage, setCurrentPage] = useState(0);

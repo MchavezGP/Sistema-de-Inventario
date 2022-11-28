@@ -1,5 +1,5 @@
-import { Router } from 'express';
-import { pool } from '../db.js';
+import { Router } from "express";
+import { pool } from "../db.js";
 
 // Obtiene todos los productos
 export const getProductos = async (req, res) => {
@@ -21,7 +21,7 @@ export const getProducto = async (req, res) => {
       [req.params.id]
     );
     if (result.length == 0)
-      return res.status(404).json({ messagge: 'Producto no encontrado' });
+      return res.status(404).json({ messagge: "Producto no encontrado" });
 
     res.json(result[0]);
   } catch (error) {
@@ -34,7 +34,7 @@ export const createProducto = async (req, res) => {
   try {
     const { nombreProducto, stock, fecha, marca, categoria } = req.body;
     const [result] = await pool.query(
-      'INSERT INTO producto (nombreProducto , stock ,fecha, marca,  categoria ) VALUES (?,?,?,?,?)',
+      "INSERT INTO producto (nombreProducto , stock ,fecha, marca,  categoria ) VALUES (?,?,?,?,?)",
       [nombreProducto, stock, fecha, marca, categoria]
     );
 
@@ -55,7 +55,7 @@ export const createProducto = async (req, res) => {
 export const updateProducto = async (req, res) => {
   try {
     const result = await pool.query(
-      'UPDATE producto SET ? WHERE idProducto = ?',
+      "UPDATE producto SET ? WHERE idProducto = ?",
       [req.body, req.params.id]
     );
     res.json(result);
@@ -66,9 +66,9 @@ export const updateProducto = async (req, res) => {
 
 export const updateStock = async (req, res) => {
   try {
-    const { idProducto , cantidad} = req.body;
+    const { idProducto, cantidad } = req.body;
     const [result] = await pool.query(
-      'UPDATE producto SET STOCK = STOCK + CANTIDAD  WHERE idProducto = ?;',
+      "UPDATE producto SET STOCK = STOCK + CANTIDAD  WHERE idProducto = ?;",
       [idProducto, cantidad]
     );
 
@@ -84,12 +84,23 @@ export const updateStock = async (req, res) => {
 export const deleteProducto = async (req, res) => {
   try {
     const [result] = await pool.query(
-      'DELETE FROM producto WHERE idProducto = ?',
+      "DELETE FROM producto WHERE idProducto = ?",
       [req.params.id]
     );
     if (result.affectedRows === 0)
-      return res.status(404).json({ message: 'Producto no encontrado' });
+      return res.status(404).json({ message: "Producto no encontrado" });
     return res.sendStatus(204);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+export const getKardex = async (req, res) => {
+  try {
+    const [result] = await pool.query(
+      "select  p.idProducto, p.nombreProducto, m.nombreMarca, c.nombreCategoria, p.stock, SUM(ep.cantidad) as cantidadingreso,  SUM(ps.cantidad) as cantidadsalida from producto p INNER JOIN marca m ON p.marca = m.idMarca INNER JOIN categoria c ON p.categoria = c.idCategoria INNER JOIN entrada_producto ep on ep.producto = p.idProducto INNER JOIN producto_salida ps on ps.producto = p.idProducto group by p.nombreProducto  order by p.idProducto;"
+    );
+    res.json(result);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }

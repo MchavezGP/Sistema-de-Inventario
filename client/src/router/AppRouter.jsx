@@ -19,7 +19,8 @@ import {
   ListCategoria,
   ListMarca,
   ListArea,
-  ListUsuario
+  ListUsuario,
+  ListKardex
 } from '../Inventario/Pages/Listas';
 import { EntradaRegistro } from '../Inventario/Pages/Registros/EntradaRegistro';
 
@@ -34,6 +35,7 @@ export const AppRouter = () => {
       <Route path='/categorialist' element={<ListCategoria />} />
       <Route path='/marcalist' element={<ListMarca />} />
       <Route path='/entradalist' element={<ListEntrada />} />
+      <Route path='/kardexlist' element={<ListKardex />} />
       <Route path='/entradaproductolist' element={<ListEntradaProducto />} />
       <Route path='/productosalidalist' element={<ListProductoSalida />} />
       <Route path='/arealist' element={<ListArea />} />

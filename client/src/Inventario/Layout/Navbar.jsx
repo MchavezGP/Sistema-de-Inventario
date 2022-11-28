@@ -225,6 +225,25 @@ export const Navbar = () => {
                 </li>
               </ul>
             </li>
+            <li className='nav-item dropdown'>
+              <a
+                className='nav-link dropdown-toggle'
+                href='#'
+                id='navbarDropdown'
+                role='button'
+                data-bs-toggle='dropdown'
+                aria-expanded='false'
+              >
+                Reporte
+              </a>
+              <ul className='dropdown-menu' aria-labelledby='navbarDropdown'>
+                <li>
+                  <RouterLink to='/kardexlist' className='dropdown-item'>
+                    Reporte
+                  </RouterLink>
+                </li>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>
