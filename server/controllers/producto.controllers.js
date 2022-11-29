@@ -98,7 +98,7 @@ export const deleteProducto = async (req, res) => {
 export const getKardex = async (req, res) => {
   try {
     const [result] = await pool.query(
-      "select  p.idProducto, p.nombreProducto, m.nombreMarca, c.nombreCategoria, p.stock, SUM(ep.cantidad) as cantidadingreso,  SUM(ps.cantidad) as cantidadsalida from producto p INNER JOIN marca m ON p.marca = m.idMarca INNER JOIN categoria c ON p.categoria = c.idCategoria INNER JOIN entrada_producto ep on ep.producto = p.idProducto INNER JOIN producto_salida ps on ps.producto = p.idProducto group by p.nombreProducto  order by p.idProducto;"
+      "select  p.idProducto, p.nombreProducto, m.nombreMarca, c.nombreCategoria, p.stock, SUM(ep.cantidad) as cantidadingreso,  SUM(ps.cantidad) as cantidadsalida from producto p INNER JOIN marca m ON p.marca = m.idMarca INNER JOIN categoria c ON p.categoria = c.idCategoria INNER JOIN entrada_producto ep on ep.producto = p.idProducto INNER JOIN producto_salida ps on ps.producto = p.idProducto group by p.idProducto  order by p.idProducto;"
     );
     res.json(result);
   } catch (error) {
